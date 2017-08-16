@@ -57,7 +57,11 @@ import           Prelude                               hiding (log)
 import           SrcLoc
 import           System.Directory
 import           System.FilePath
+<<<<<<< HEAD
 import qualified Data.Rope.UTF16 as Rope
+=======
+import           Data.Char
+>>>>>>> Added URI decoding for building ghc-mod URIs
 
 -- ---------------------------------------------------------------------
 
@@ -260,6 +264,7 @@ fileInfo tfileName =
 
 -- ---------------------------------------------------------------------
 
+<<<<<<< HEAD
 clientSupportsDocumentChanges :: IdeM Bool
 clientSupportsDocumentChanges = do
   ClientCapabilities mwCaps _ _ _ <- getClientCapabilities
@@ -270,6 +275,14 @@ clientSupportsDocumentChanges = do
   return $ fromMaybe False supports
 
 -- ---------------------------------------------------------------------
+=======
+uri2fileUri :: Uri -> GM.FileUri
+uri2fileUri (Uri f) = GM.FileUri $ T.pack . uriDecode . T.unpack $ f
+  where
+    uriDecode ('%':x:y:rest) = toEnum (16 * digitToInt x + digitToInt y) : uriDecode rest
+    uriDecode (x:xs) = x : uriDecode xs
+    uriDecode [] = []
+>>>>>>> Added URI decoding for building ghc-mod URIs
 
 readVFS :: (MonadIde m, MonadIO m) => Uri -> m (Maybe T.Text)
 readVFS uri = do
