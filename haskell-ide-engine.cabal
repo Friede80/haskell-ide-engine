@@ -27,6 +27,7 @@ library
   other-modules:       Paths_haskell_ide_engine
   build-depends:       Cabal >= 1.22
                      , aeson
+                     , async
                      , base >= 4.9 && < 5
                      , bytestring
                      , containers
@@ -49,6 +50,7 @@ library
                      , lens >= 4.15.2
                      , mtl
                      , optparse-simple >= 0.0.3
+                     , sorted-list == 0.2.0.*
                      , stm
                      , text
                      , unordered-containers
